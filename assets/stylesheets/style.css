@@ -1,0 +1,59 @@
+div.mensawidget-weeks {
+    float: left;
+}
+
+div.mensawidget-days {
+    float: right;
+    margin-right: 3px;
+}
+
+table.mensawidget-menu {
+    display: none;
+}
+
+td.mensawidget-type {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+td.mensawidget-kind {
+    text-align: right !important;
+}
+
+a.mensawidget-daylink {
+    display: none;
+}
+
+span.mensawidget-dayselect, span.mensawidget-weekselect {
+    border: 1px solid #879198;
+    background-color: #e1e4e5;
+    padding: 3px;
+    margin-right: -5px;
+    display: inline-block;
+    margin-top: 18px;
+}
+
+span.mensawidget-today {
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+span.mensawidget-selected {
+    background-color: #ffe4ad;
+}
+
+div.mensawidget-weeks, div.mensawidget-days {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    height: 45px;
+}
+
+div.mensawidget-todaytext {
+    font-size: 67%;
+    text-align: center;
+}
+
+div.mensawidget-select {
+    margin-right: 2px;
+}

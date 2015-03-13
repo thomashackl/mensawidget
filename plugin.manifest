@@ -1,0 +1,6 @@
+pluginclassname=MensaWidget
+pluginname=MensaWidget
+origin=intelec
+version=1.0
+studipMinVersion=3.1
+description=Dieses Widget zeigt den aktuellen Mensaplan.
