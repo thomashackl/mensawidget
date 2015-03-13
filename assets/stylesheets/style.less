@@ -1,0 +1,60 @@
+@import "colors.less";
+
+div.mensawidget-select {
+    margin-right: 5px;
+    div.mensawidget-weeks {
+        bottom: 0;
+        float: left;
+        height: 45px;
+        left: 0;
+        position: relative;
+        span.mensawidget-weekselect {
+            border: 1px solid @light-gray-color-20;
+            background-color: @light-gray-color-20;
+            padding: 3px;
+            margin-right: -5px;
+            display: inline-block;
+            margin-top: 16px;
+        }
+    }
+    div.mensawidget-days {
+        bottom: 0;
+        float: right;
+        height: 45px;
+        left: 0;
+        position: relative;
+        a.mensawidget-daylink {
+            display: none;
+            span.mensawidget-dayselect {
+                border: 1px solid @light-gray-color-20;
+                background-color: @light-gray-color-20;
+                padding: 3px;
+                margin-right: -5px;
+                display: inline-block;
+                margin-top: 16px;
+                div.mensawidget-todaytext {
+                    font-size: 67%;
+                    text-align: center;
+                }
+            }
+            span.mensawidget-today {
+                font-weight: bold;
+                margin-top: 3px;
+            }
+        }
+    }
+    span.mensawidget-selected {
+        background-color: @brand-color-dark !important;
+        color: white;
+    }
+}
+table.mensawidget-menu {
+    display: none;
+    td.mensawidget-type {
+        font-weight: bold;
+        vertical-align: top;
+    }
+    td.mensawidget-kind {
+        text-align: right !important;
+    }
+}
