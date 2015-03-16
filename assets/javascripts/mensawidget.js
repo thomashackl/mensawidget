@@ -14,10 +14,17 @@ STUDIP.MensaWidget = {
     },
 
     showMenu: function(day) {
-        $('table.mensawidget-menu').hide();
-        $('table#mensawidget-'+day).show();
-        $('span.mensawidget-dayselect').removeClass('mensawidget-selected');
-        $('span#mensawidget-day'+day).addClass('mensawidget-selected');
+        if ($('section#mensawidget-'+day).length > 0) {
+            $('section.mensawidget-menu').hide();
+            $('section#mensawidget-' + day).show();
+            $('span.mensawidget-dayselect').removeClass('mensawidget-selected');
+            $('span#mensawidget-day' + day).addClass('mensawidget-selected');
+        } else {
+            // No menu for selected day -> show next available menu.
+            $('span#mensawidget-day' + day).
+                parent('a.mensawidget-daylink').
+                next('a.mensawidget-daylink').click();
+        }
         return false;
     }
 
@@ -26,6 +33,5 @@ STUDIP.MensaWidget = {
 $(function() {
     var today = new Date();
     var month = ((today.getMonth().length+1) === 1)? (today.getMonth()+1) : '0' + (today.getMonth()+1);
-    //STUDIP.MensaWidget.showMenu(today.getDate()+month+today.getFullYear());
     STUDIP.MensaWidget.showWeek('current');
 });
