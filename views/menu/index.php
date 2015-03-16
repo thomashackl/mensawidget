@@ -1,12 +1,12 @@
 <article>
     <header class="mensawidget-select">
         <div class="mensawidget-weeks">
-            <a href="#" onclick="return STUDIP.MensaWidget.showWeek('current')" class="mensawidget-weeklink" data-week="current">
+            <a href="" onclick="return STUDIP.MensaWidget.showWeek('current')" class="mensawidget-weeklink" data-week="current">
                 <span class="mensawidget-weekselect">
                     <?= dgettext('mensawidget', 'aktuelle Woche') ?>
                 </span>
             </a>
-            <a href="#" onclick="return STUDIP.MensaWidget.showWeek('next')" class="mensawidget-weeklink" data-week="next">
+            <a href="" onclick="return STUDIP.MensaWidget.showWeek('next')" class="mensawidget-weeklink" data-week="next">
                 <span class="mensawidget-weekselect">
                     <?= dgettext('mensawidget', 'nächste Woche') ?>
                 </span>
@@ -14,7 +14,7 @@
         </div>
         <div class="mensawidget-days">
             <?php foreach ($data as $date => $menu) { ?>
-                <a href="#" onclick="return STUDIP.MensaWidget.showMenu('<?= date('dmY', strtotime($date)) ?>')" class="mensawidget-daylink" data-week="<?= strtotime($date) < $lastcurrentweekday ? 'current' : 'next' ?>"<?= $date == $today ? ' data-today="true"' : '' ?>>
+                <a href="#<?= date('dmY', strtotime($date)) ?>" onclick="return STUDIP.MensaWidget.showMenu('<?= date('dmY', strtotime($date)) ?>')" class="mensawidget-daylink mensawidget-shown" data-week="<?= strtotime($date) < $lastcurrentweekday ? 'current' : 'next' ?>"<?= $date == $today ? ' data-today="true"' : '' ?>>
                 <span id="mensawidget-day<?= date('dmY', strtotime($date)) ?>" class="mensawidget-dayselect<?= $date == $today ? ' mensawidget-today' : '' ?>">
                 <?php if ($date == $today) { ?>
                     <div class="mensawidget-todaytext">
@@ -29,7 +29,8 @@
         <div style="clear: both"></div>
     </header>
     <?php foreach ($data as $date => $menu) { $daydate = date('d.m.Y', strtotime($date)); ?>
-    <section class="mensawidget-menu" id="mensawidget-<?= date('dmY', strtotime($date)) ?>">
+    <section class="mensawidget-menu mensawidget-hidden" id="mensawidget-<?= date('dmY', strtotime($date)) ?>">
+        <a name="<?= date('dmY', strtotime($date)) ?>"></a>
         <table class="default">
             <thead>
             <tr>

@@ -23,9 +23,6 @@ header.mensawidget-select div.mensawidget-days {
   left: 0;
   position: relative;
 }
-header.mensawidget-select div.mensawidget-days a.mensawidget-daylink {
-  display: none;
-}
 header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-dayselect {
   border: 1px solid #e1e4e5;
   background-color: #e1e4e5;
@@ -47,7 +44,7 @@ header.mensawidget-select span.mensawidget-selected {
   color: white;
 }
 section.mensawidget-menu {
-  display: none;
+  width: 100%;
 }
 section.mensawidget-menu td.mensawidget-type {
   font-weight: bold;
