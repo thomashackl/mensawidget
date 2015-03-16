@@ -1,14 +1,14 @@
-div.mensawidget-select {
+header.mensawidget-select {
   margin-right: 5px;
 }
-div.mensawidget-select div.mensawidget-weeks {
+header.mensawidget-select div.mensawidget-weeks {
   bottom: 0;
   float: left;
   height: 45px;
   left: 0;
   position: relative;
 }
-div.mensawidget-select div.mensawidget-weeks span.mensawidget-weekselect {
+header.mensawidget-select div.mensawidget-weeks span.mensawidget-weekselect {
   border: 1px solid #e1e4e5;
   background-color: #e1e4e5;
   padding: 3px;
@@ -16,43 +16,48 @@ div.mensawidget-select div.mensawidget-weeks span.mensawidget-weekselect {
   display: inline-block;
   margin-top: 16px;
 }
-div.mensawidget-select div.mensawidget-days {
+header.mensawidget-select div.mensawidget-days {
   bottom: 0;
   float: right;
   height: 45px;
   left: 0;
   position: relative;
 }
-div.mensawidget-select div.mensawidget-days a.mensawidget-daylink {
+header.mensawidget-select div.mensawidget-days a.mensawidget-daylink {
   display: none;
 }
-div.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-dayselect {
+header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-dayselect {
   border: 1px solid #e1e4e5;
   background-color: #e1e4e5;
   padding: 3px;
-  margin-right: -5px;
+  margin-right: -4px;
   display: inline-block;
   margin-top: 16px;
 }
-div.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-dayselect div.mensawidget-todaytext {
+header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-dayselect div.mensawidget-todaytext {
   font-size: 67%;
   text-align: center;
 }
-div.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-today {
+header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-today {
   font-weight: bold;
   margin-top: 3px;
 }
-div.mensawidget-select span.mensawidget-selected {
+header.mensawidget-select span.mensawidget-selected {
   background-color: #24437c !important;
   color: white;
 }
-table.mensawidget-menu {
+section.mensawidget-menu {
   display: none;
 }
-table.mensawidget-menu td.mensawidget-type {
+section.mensawidget-menu td.mensawidget-type {
   font-weight: bold;
   vertical-align: top;
 }
-table.mensawidget-menu td.mensawidget-kind {
+section.mensawidget-menu td.mensawidget-kind {
   text-align: right !important;
+}
+footer.mensawidget-info {
+  background-color: #e1e4e5;
+  font-size: 9pt;
+  margin-top: -13px;
 }
