@@ -22,12 +22,13 @@ class MensaMenu {
         $cachefile = $GLOBALS['CACHING_FILECACHE_PATH'] . '/mensa-' . $curryear . '-' . $week . '.csv';
         // Try to get cached data if file exists and is still valid.
         if (!file_exists($cachefile) ||
-                (filemtime($cachefile) <= mktime() - (24))) {
+                (filemtime($cachefile) <= mktime() - (Config::get()->MENSAWIDGET_CACHE_LIFETIME*60))) {
             // Fetch CSV with data from STWNO homepage.
             $file = file_get_contents('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . ($week - 1) . '.csv?t=' . mktime());
             if (@file_put_contents($cachefile, $file)) {
                 $handle = fopen($cachefile, 'r');
             } else {
+                echo 'Reading from cached file.<br/>';
                 $handle = fopen('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . ($week - 1) . '.csv?t=' . mktime(), 'r');
             }
         } else {
@@ -41,6 +42,7 @@ class MensaMenu {
             // Get first and last days to consider for current week.
             $weekplan['start'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week)));
             $weekplan['end'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week.'5')));
+            $weekplan['mtime'] = filemtime($cachefile);
             $i = 0;
             while ($current = fgetcsv($handle, 5000, ';')) {
                 // Skip first line as it contains only descriptional headers.
@@ -76,7 +78,7 @@ class MensaMenu {
                     }
                     // Add complete record to weekplan.
                     $weekplan['data'][$current[0]][$index][] = array(
-                        'day' => $day,
+                        'day' => $current[0],
                         'meal' => $current[3],
                         'kind' => $current[4],
                         'fullprice' => $current[5],
@@ -112,7 +114,7 @@ class MensaMenu {
             ),
             'B' => array(
                 'icon' => '/assets/images/eu_organic.png',
-                'title' => dgettext('mensawidget', 'Bio-Gericht')
+                'title' => dgettext('mensawidget', 'DE-ÖKO-006 mit ausschließlich biologisch erzeugten Rohstoffen')
             ),
             'F' => array(
                 'icon' => '/assets/images/fisch.png',
@@ -122,13 +124,17 @@ class MensaMenu {
                 'icon' => '/assets/images/gefluegel.png',
                 'title' => dgettext('mensawidget', 'Geflügel')
             ),
+            'L' => array(
+                'icon' => '/assets/images/lamm.png',
+                'title' => dgettext('mensawidget', 'Lamm')
+            ),
             'MV' => array(
                 'icon' => '/assets/images/mensa_vital.png',
-                'title' => dgettext('mensawidget', 'mensaVital')
+                'title' => dgettext('mensawidget', 'Mensa Vital')
             ),
             'MSC' => array(
                 'icon' => '/assets/images/msc.png',
-                'title' => dgettext('mensawidget', 'zertifiziert Marine Stewardship Council MSC')
+                'title' => dgettext('mensawidget', 'zertifizierte nachhaltige Fischerei (MSC-C-53400)')
             ),
             'R' => array(
                 'icon' => '/assets/images/rind.png',
@@ -145,6 +151,10 @@ class MensaMenu {
             'VG' => array(
                 'icon' => '/assets/images/vegan.png',
                 'title' => dgettext('mensawidget', 'Vegan')
+            ),
+            'W' => array(
+                'icon' => '/assets/images/wild.png',
+                'title' => dgettext('mensawidget', 'Wild')
             )
         );
     }
