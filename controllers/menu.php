@@ -55,6 +55,7 @@ class MenuController extends AuthenticatedController {
                 'name' => $pricetypes[$pricetype],
                 'value' => $pricetype
             );
+            $this->mtime = min($currweekplan['mtime'], $nextweekplan['mtime']);
         } else {
             $this->error = MessageBox::info(
                 dgettext('mensawidget', 'Kein Speiseplan für die aktuelle Woche gefunden.'));
