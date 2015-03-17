@@ -6,7 +6,14 @@ STUDIP.MensaWidget = {
         $('a.mensawidget-weeklink[data-week="'+week+'"]').children('span.mensawidget-weekselect').addClass('mensawidget-selected');
         $('a.mensawidget-daylink[data-week="'+week+'"]').fadeIn(500);
         if ($('a.mensawidget-daylink[data-week="'+week+'"][data-today="true"]').length > 0) {
-            $('a.mensawidget-daylink[data-week="'+week+'"][data-today="true"]').click();
+            var today = new Date();
+            var thisday = ((today.getDate() >= 10)? (today.getDate()) : ('0' + today.getDate()));
+            var month = ((today.getMonth().length+1) === 1)? (today.getMonth()+1) : '0' + (today.getMonth()+1);
+            if (today.getHours() < 14) {
+                $('a.mensawidget-daylink[data-week="' + week + '"][data-today="true"]').click();
+            } else {
+                $('a.mensawidget-daylink[data-week="' + week + '"][data-today="true"]').next().click();
+            }
         } else {
             $('a.mensawidget-daylink[data-week="'+week+'"]').first().click();
         }
@@ -14,8 +21,8 @@ STUDIP.MensaWidget = {
     },
 
     showMenu: function(day) {
-        var now = new Date();
-        if ($('section#mensawidget-'+day).length > 0 || (now.getHours() >= 14)) {
+        // If selected day has a menu, show it.
+        if ($('section#mensawidget-'+day).length > 0) {
             $('section.mensawidget-menu').hide();
             $('section#mensawidget-' + day).fadeIn(500);
             $('span.mensawidget-dayselect').removeClass('mensawidget-selected');
@@ -32,7 +39,5 @@ STUDIP.MensaWidget = {
 };
 
 $(function() {
-    var today = new Date();
-    var month = ((today.getMonth().length+1) === 1)? (today.getMonth()+1) : '0' + (today.getMonth()+1);
     STUDIP.MensaWidget.showWeek('current');
 });
