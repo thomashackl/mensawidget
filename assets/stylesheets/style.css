@@ -14,7 +14,7 @@ header.mensawidget-select div.mensawidget-weeks span.mensawidget-weekselect {
   border-bottom: 1px solid #899ab9;
   color: #fff;
   padding: 3px;
-  margin-right: -5px;
+  margin-right: -1px;
   display: inline-block;
   margin-top: 16px;
 }
@@ -34,7 +34,7 @@ header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensaw
   border-bottom: 1px solid #899ab9;
   color: #fff;
   padding: 3px;
-  margin-right: -4px;
+  margin-right: -2px;
   display: inline-block;
   margin-top: 16px;
 }
