@@ -28,7 +28,6 @@ class MensaMenu {
             if (@file_put_contents($cachefile, $file)) {
                 $handle = fopen($cachefile, 'r');
             } else {
-                echo 'Reading from cached file.<br/>';
                 $handle = fopen('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . ($week - 1) . '.csv?t=' . mktime(), 'r');
             }
         } else {
