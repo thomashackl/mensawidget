@@ -9,12 +9,17 @@ header.mensawidget-select div.mensawidget-weeks {
   position: relative;
 }
 header.mensawidget-select div.mensawidget-weeks span.mensawidget-weekselect {
-  border: 1px solid #e1e4e5;
-  background-color: #e1e4e5;
+  /*border: 1px solid @light-gray-color-20;*/
+  background-color: #899ab9;
+  border-bottom: 1px solid #899ab9;
+  color: #fff;
   padding: 3px;
   margin-right: -5px;
   display: inline-block;
   margin-top: 16px;
+}
+header.mensawidget-select div.mensawidget-weeks span.mensawidget-weekselect:hover {
+  background-color: #7890bc;
 }
 header.mensawidget-select div.mensawidget-days {
   bottom: 0;
@@ -24,8 +29,10 @@ header.mensawidget-select div.mensawidget-days {
   position: relative;
 }
 header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-dayselect {
-  border: 1px solid #e1e4e5;
-  background-color: #e1e4e5;
+  /*border: 1px solid @light-gray-color-20;*/
+  background-color: #899ab9;
+  border-bottom: 1px solid #899ab9;
+  color: #fff;
   padding: 3px;
   margin-right: -4px;
   display: inline-block;
@@ -35,13 +42,17 @@ header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensaw
   font-size: 67%;
   text-align: center;
 }
+header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-dayselect:hover {
+  background-color: #7890bc;
+}
 header.mensawidget-select div.mensawidget-days a.mensawidget-daylink span.mensawidget-today {
   font-weight: bold;
   margin-top: 3px;
 }
 header.mensawidget-select span.mensawidget-selected {
-  background-color: #24437c !important;
-  color: white;
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #899ab9;
 }
 section.mensawidget-menu {
   width: 100%;
