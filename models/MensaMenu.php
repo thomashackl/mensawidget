@@ -43,7 +43,8 @@ class MensaMenu {
             $weekplan['end'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week.'5')));
             $weekplan['mtime'] = filemtime($cachefile);
             $i = 0;
-            while ($current = fgetcsv($handle, 5000, ';')) {
+            while ($string = fgets($handle)) {
+                $current = str_getcsv(html_entity_decode($string), ';');
                 // Skip first line as it contains only descriptional headers.
                 if ($i > 0) {
                     // Map meal type to some textual representation.
