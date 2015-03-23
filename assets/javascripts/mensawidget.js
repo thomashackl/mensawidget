@@ -15,7 +15,11 @@ STUDIP.MensaWidget = {
                 $('a.mensawidget-daylink[data-week="' + week + '"][data-today="true"]').next().click();
             }
         } else {
-            $('a.mensawidget-daylink[data-week="'+week+'"]').first().click();
+            if (week == 'current') {
+                $('a.mensawidget-daylink[data-week="'+week+'"]').last().click();
+            } else {
+                $('a.mensawidget-daylink[data-week="'+week+'"]').first().click();
+            }
         }
         return false;
     },

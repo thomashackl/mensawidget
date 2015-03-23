@@ -48,7 +48,7 @@ class MenuController extends AuthenticatedController {
             $this->today = date('d.m.Y');
             $this->data = $currweekplan['data'] + $nextweekplan['data'];
             $this->types = array_merge($currweekplan['types'], $nextweekplan['types']);
-            $this->lastcurrentweekday = strtotime('next saturday', strtotime('yesterday'));
+            $this->lastcurrentweekday = strtotime('next sunday', strtotime('yesterday'));
             $pricetypes = MensaMenu::getPriceTypes();
             $pricetype = UserConfig::get($GLOBALS['user']->id)->MENSAWIDGET_PRICETYPE ?: 'fullprice';
             $this->pricetype = array(
