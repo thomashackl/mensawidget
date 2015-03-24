@@ -64,7 +64,7 @@ section.mensawidget-menu td.mensawidget-type {
 section.mensawidget-menu td.mensawidget-kind {
   text-align: right !important;
 }
-section.mensawidget-menu td.mensawidget-price {
+section.mensawidget-menu .mensawidget-price {
   text-align: center !important;
 }
 footer.mensawidget-info {
