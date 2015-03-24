@@ -56,7 +56,7 @@
                         <img src="<?= $controller->plugin->getPluginURL().$icon['icon'] ?>" alt="<?= $icon['title'] ?>" title="<?= $icon['title'] ?>"/>
                     <?php } ?>
                 </td>
-                <td><?= htmlReady($meal[$pricetype['value']]) ?></td>
+                <td class="mensawidget-price"><?= htmlReady($meal[$pricetype['value']]) ?></td>
             </tr>
             <?php } ?>
             <?php } ?>
