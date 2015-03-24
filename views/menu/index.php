@@ -37,7 +37,7 @@
                 <th width="20%"></th>
                 <th></th>
                 <th></th>
-                <th>
+                <th class="mensawidget-price">
                     <?= dgettext('mensawidget', 'Preis') ?>
                     <?= tooltipIcon($pricetype['name']) ?>
                 </th>
