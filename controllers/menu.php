@@ -44,18 +44,24 @@ class MenuController extends AuthenticatedController {
         $nextweek = intval(date('W', mktime()+(7*24*60*60)));
         $nextweekplan = MensaMenu::getWeekPlan($nextweek);
         if ($currweekplan) {
-            $this->days = $currweekplan['datemap'] + $nextweekplan['datemap'];
-            $this->today = date('d.m.Y');
-            $this->data = $currweekplan['data'] + $nextweekplan['data'];
-            $this->types = array_merge($currweekplan['types'], $nextweekplan['types']);
-            $this->lastcurrentweekday = strtotime('next sunday', strtotime('yesterday'));
-            $pricetypes = MensaMenu::getPriceTypes();
-            $pricetype = UserConfig::get($GLOBALS['user']->id)->MENSAWIDGET_PRICETYPE ?: 'fullprice';
-            $this->pricetype = array(
-                'name' => $pricetypes[$pricetype],
-                'value' => $pricetype
-            );
-            $this->mtime = $currweekplan['mtime'];
+            if (is_array($currweekplan['datemap']) && is_array($nextweekplan['datemap'])) {
+                $this->days = $currweekplan['datemap'] + $nextweekplan['datemap'];
+                $this->today = date('d.m.Y');
+                $this->data = $currweekplan['data'] + $nextweekplan['data'];
+                $this->types = array_merge($currweekplan['types'], $nextweekplan['types']);
+                $this->lastcurrentweekday = strtotime('next sunday', strtotime('yesterday'));
+                $pricetypes = MensaMenu::getPriceTypes();
+                $pricetype = UserConfig::get($GLOBALS['user']->id)->MENSAWIDGET_PRICETYPE ?: 'fullprice';
+                $this->pricetype = array(
+                    'name' => $pricetypes[$pricetype],
+                    'value' => $pricetype
+                );
+                $this->mtime = $currweekplan['mtime'];
+            } else {
+                $this->error = MessageBox::info(
+                    dgettext('mensawidget',
+                        'Fehler in den vom STWNO übertragenen Daten. Bitte versuchen Sie es später wieder.'));
+            }
         } else {
             $this->error = MessageBox::info(
                 dgettext('mensawidget', 'Kein Speiseplan für die aktuelle Woche gefunden.'));
