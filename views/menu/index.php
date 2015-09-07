@@ -13,22 +13,22 @@
             </a>
         </div>
         <div class="mensawidget-days">
-            <?php foreach ($data as $date => $menu) { ?>
+            <?php foreach ($data as $date => $menu) : ?>
                 <a href="#<?= date('dmY', strtotime($date)) ?>" onclick="return STUDIP.MensaWidget.showMenu('<?= date('dmY', strtotime($date)) ?>')" class="mensawidget-daylink mensawidget-shown" data-week="<?= strtotime($date) < $lastcurrentweekday ? 'current' : 'next' ?>"<?= $date == $today ? ' data-today="true"' : '' ?>>
                 <span id="mensawidget-day<?= date('dmY', strtotime($date)) ?>" class="mensawidget-dayselect<?= $date == $today ? ' mensawidget-today' : '' ?>">
-                <?php if ($date == $today) { ?>
+                <?php if ($date == $today) : ?>
                     <div class="mensawidget-todaytext">
                         <?= dgettext('mensawidget', 'Heute') ?>
                     </div>
-                <?php } ?>
+                <?php endif ?>
                     <?= date('d.m.', strtotime($date)) ?>
                 </span>
                 </a>
-            <?php } ?>
+            <?php endforeach ?>
         </div>
         <div style="clear: both"></div>
     </header>
-    <?php foreach ($data as $date => $menu) { $daydate = date('d.m.Y', strtotime($date)); ?>
+    <?php foreach ($data as $date => $menu) : $daydate = date('d.m.Y', strtotime($date)); ?>
     <section class="mensawidget-menu mensawidget-hidden" id="mensawidget-<?= date('dmY', strtotime($date)) ?>">
         <a name="<?= date('dmY', strtotime($date)) ?>"></a>
         <table class="default">
@@ -45,25 +45,25 @@
             </thead>
             <tbody>
             <tr>
-                <?php foreach ($types as $index => $name) { $first = true; ?>
-                <?php if ($first) { $first = false; ?>
+                <?php foreach ($types as $index => $name) : $first = true; ?>
+                    <?php if ($first) : $first = false; ?>
                     <td class="mensawidget-type" rowspan="<?= sizeof($data[$daydate][$index]) ?>"><?= htmlReady($name) ?></td>
-                <?php } ?>
-                <?php foreach ($menu[$index] as $meal) { ?>
+                    <?php endif ?>
+                    <?php foreach ($menu[$index] as $meal) : ?>
                 <td><?= htmlReady($meal['meal']) ?></td>
                 <td class="mensawidget-kind">
-                    <?php foreach ($meal['icons'] as $icon) { ?>
+                        <?php foreach ($meal['icons'] as $icon) : ?>
                         <img src="<?= $controller->plugin->getPluginURL().$icon['icon'] ?>" alt="<?= $icon['title'] ?>" title="<?= $icon['title'] ?>"/>
-                    <?php } ?>
+                        <?php endforeach ?>
                 </td>
                 <td class="mensawidget-price"><?= htmlReady($meal[$pricetype['value']]) ?></td>
             </tr>
-            <?php } ?>
-            <?php } ?>
+                <?php endforeach ?>
+            <?php endforeach ?>
             </tbody>
         </table>
     </section>
-    <?php } ?>
+    <?php endforeach ?>
     <footer class="mensawidget-info">
         <?= formatReady(sprintf(dgettext('mensawidget', 'Daten von %s (Stand: %s)'), 'http://www.stwno.de/joomla/de/gastronomie/speiseplan/uni-passau', date('d.m.Y, H:i', $mtime))) ?>
     </footer>
