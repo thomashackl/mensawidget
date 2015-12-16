@@ -46,20 +46,22 @@
             <tbody>
             <tr>
                 <?php foreach ($types as $index => $name) : $first = true; ?>
-                    <?php if ($first) : $first = false; ?>
-                    <td class="mensawidget-type" rowspan="<?= sizeof($data[$daydate][$index]) ?>"><?= htmlReady($name) ?></td>
-                    <?php endif ?>
-                    <?php foreach ($menu[$index] as $meal) : ?>
-                <td><?= htmlReady($meal['meal']) ?></td>
-                <td class="mensawidget-kind">
-                        <?php foreach ($meal['icons'] as $icon) : ?>
-                        <img src="<?= $controller->plugin->getPluginURL().$icon['icon'] ?>" alt="<?= $icon['title'] ?>" title="<?= $icon['title'] ?>"/>
+                    <?php if (count($data[$daydate][$index]) > 0) : ?>
+                        <?php if ($first) : $first = false; ?>
+                            <td class="mensawidget-type" rowspan="<?= count($data[$daydate][$index]) ?>"><?= htmlReady($name) ?></td>
+                        <?php endif ?>
+                        <?php foreach ($menu[$index] as $meal) : ?>
+                            <td><?= htmlReady($meal['meal']) ?></td>
+                            <td class="mensawidget-kind">
+                            <?php foreach ($meal['icons'] as $icon) : ?>
+                                <img src="<?= $controller->plugin->getPluginURL().$icon['icon'] ?>" alt="<?= $icon['title'] ?>" title="<?= $icon['title'] ?>"/>
+                            <?php endforeach ?>
+                            </td>
+                            <td class="mensawidget-price"><?= htmlReady($meal[$pricetype['value']]) ?></td>
+                        </tr>
                         <?php endforeach ?>
-                </td>
-                <td class="mensawidget-price"><?= htmlReady($meal[$pricetype['value']]) ?></td>
-            </tr>
+                    <?php endif ?>
                 <?php endforeach ?>
-            <?php endforeach ?>
             </tbody>
         </table>
     </section>
