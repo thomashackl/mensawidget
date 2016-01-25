@@ -24,11 +24,11 @@ class MensaMenu {
         if (!file_exists($cachefile) ||
                 (filemtime($cachefile) <= mktime() - (Config::get()->MENSAWIDGET_CACHE_LIFETIME*60))) {
             // Fetch CSV with data from STWNO homepage.
-            $file = file_get_contents('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . ($week - 1) . '.csv?t=' . mktime());
+            $file = file_get_contents('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . mktime());
             if (@file_put_contents($cachefile, $file)) {
                 $handle = fopen($cachefile, 'r');
             } else {
-                $handle = fopen('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . ($week - 1) . '.csv?t=' . mktime(), 'r');
+                $handle = fopen('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . mktime(), 'r');
             }
         } else {
             $handle = fopen($cachefile, 'r');
@@ -40,7 +40,7 @@ class MensaMenu {
         if ($handle) {
             // Get first and last days to consider for current week.
             $weekplan['start'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week)));
-            $weekplan['end'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week.'5')));
+            $weekplan['end'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week.'-5')));
             $weekplan['mtime'] = filemtime($cachefile);
             $i = 0;
             while ($string = fgets($handle)) {

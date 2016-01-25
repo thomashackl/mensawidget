@@ -39,9 +39,9 @@ class MenuController extends AuthenticatedController {
         }
         PageLayout::addStylesheet($css);
         PageLayout::addScript($js);
-        $currweek = intval(date('W'));
+        $currweek = date('W');
         $currweekplan = MensaMenu::getWeekPlan($currweek);
-        $nextweek = intval(date('W', mktime()+(7*24*60*60)));
+        $nextweek = date('W', mktime()+(7*24*60*60));
         $nextweekplan = MensaMenu::getWeekPlan($nextweek);
         if ($currweekplan) {
             if (is_array($currweekplan['datemap']) && is_array($nextweekplan['datemap'])) {
