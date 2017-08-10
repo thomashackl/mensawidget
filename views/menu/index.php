@@ -8,7 +8,7 @@
             </a>
             <a href="" onclick="return STUDIP.MensaWidget.showWeek('next')" class="mensawidget-weeklink" data-week="next">
                 <span class="mensawidget-weekselect">
-                    <?= dgettext('mensawidget', 'nächste Woche') ?>
+                    <?= dgettext('mensawidget', 'nÃ¤chste Woche') ?>
                 </span>
             </a>
         </div>

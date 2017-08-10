@@ -60,11 +60,11 @@ class MenuController extends AuthenticatedController {
             } else {
                 $this->error = MessageBox::info(
                     dgettext('mensawidget',
-                        'Fehler in den vom STWNO übertragenen Daten. Bitte versuchen Sie es später wieder.'));
+                        'Fehler in den vom STWNO Ã¼bertragenen Daten. Bitte versuchen Sie es spÃ¤ter wieder.'));
             }
         } else {
             $this->error = MessageBox::info(
-                dgettext('mensawidget', 'Kein Speiseplan für die aktuelle Woche gefunden.'));
+                dgettext('mensawidget', 'Kein Speiseplan fÃ¼r die aktuelle Woche gefunden.'));
         }
     }
 
@@ -90,9 +90,9 @@ class MenuController extends AuthenticatedController {
         if ($new_pricetype != $pricetype) {
             $config->MENSAWIDGET_PRICETYPE = $new_pricetype;
             if ($config->store('MENSAWIDGET_PRICETYPE', $new_pricetype)) {
-                PageLayout::postMessage(MessageBox::success(_('Die Änderungen wurden gespeichert.')));
+                PageLayout::postMessage(MessageBox::success(_('Die Ã„nderungen wurden gespeichert.')));
             } else {
-                PageLayout::postMessage(MessageBox::error(_('Die Änderungen konnten nicht gespeichert werden.')));
+                PageLayout::postMessage(MessageBox::error(_('Die Ã„nderungen konnten nicht gespeichert werden.')));
             }
         }
         if (!Request::isXhr()){

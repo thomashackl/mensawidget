@@ -98,10 +98,10 @@ class MensaMenu {
 
     public static function getPriceTypes() {
         return array(
-            'fullprice' => dgettext('mensawidget', 'Studierende/Beschäftige/Gäste'),
+            'fullprice' => dgettext('mensawidget', 'Studierende/BeschÃ¤ftige/GÃ¤ste'),
             'student' => dgettext('mensawidget', 'Studierende'),
-            'employee' => dgettext('mensawidget', 'Beschäftigte'),
-            'guest' => dgettext('mensawidget', 'Gäste')
+            'employee' => dgettext('mensawidget', 'BeschÃ¤ftigte'),
+            'guest' => dgettext('mensawidget', 'GÃ¤ste')
         );
     }
 
@@ -114,7 +114,7 @@ class MensaMenu {
             ),
             'B' => array(
                 'icon' => '/assets/images/eu_organic.png',
-                'title' => dgettext('mensawidget', 'DE-ÖKO-006 mit ausschließlich biologisch erzeugten Rohstoffen')
+                'title' => dgettext('mensawidget', 'DE-Ã–KO-006 mit ausschlieÃŸlich biologisch erzeugten Rohstoffen')
             ),
             'F' => array(
                 'icon' => '/assets/images/fisch.png',
@@ -122,7 +122,7 @@ class MensaMenu {
             ),
             'G' => array(
                 'icon' => '/assets/images/gefluegel.png',
-                'title' => dgettext('mensawidget', 'Geflügel')
+                'title' => dgettext('mensawidget', 'GeflÃ¼gel')
             ),
             'L' => array(
                 'icon' => '/assets/images/lamm.png',
