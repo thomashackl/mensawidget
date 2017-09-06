@@ -21,7 +21,6 @@ class MenuController extends AuthenticatedController {
         $this->plugin = $dispatcher->plugin;
         if (Request::isXhr()) {
             $this->set_layout(null);
-            $this->response->add_header('Content-Type', 'text/html;charset=windows-1252');
         }
     }
 

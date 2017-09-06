@@ -24,73 +24,80 @@ class MensaMenu {
         if (!file_exists($cachefile) ||
                 (filemtime($cachefile) <= mktime() - (Config::get()->MENSAWIDGET_CACHE_LIFETIME*60))) {
             // Fetch CSV with data from STWNO homepage.
-            $file = file_get_contents('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . mktime());
-            if (@file_put_contents($cachefile, $file)) {
-                $handle = fopen($cachefile, 'r');
-            } else {
-                $handle = fopen('http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . mktime(), 'r');
-            }
+            $file = utf8_encode(
+                trim(
+                    file_get_contents(
+                        'http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . mktime()
+                    )
+                )
+            );
+            @file_put_contents($cachefile, $file);
+            $content = $file;
         } else {
-            $handle = fopen($cachefile, 'r');
+            $content = file_get_contents($cachefile);
         }
+
         // Mensa menu, ordered by date
         $data = array();
         $types = array();
         $icon_mapping = self::getIconMapping();
-        if ($handle) {
+        if ($content) {
             // Get first and last days to consider for current week.
             $weekplan['start'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week)));
             $weekplan['end'] = strtotime(date(datetime::ISO8601, strtotime(date('Y').'W'.$week.'-5')));
             $weekplan['mtime'] = filemtime($cachefile);
             $i = 0;
-            while ($string = fgets($handle)) {
-                $current = str_getcsv(html_entity_decode($string), ';');
-                // Skip first line as it contains only descriptional headers.
-                if ($i > 0) {
-                    // Map meal type to some textual representation.
-                    switch (substr($current[2], 0, 1)) {
-                        case 'S':
-                            $index = 'soup';
-                            $typename = dgettext('mensawidget', 'Suppe');
-                            break;
-                        case 'H':
-                            $index = 'main';
-                            $typename = dgettext('mensawidget', 'Hauptgericht');
-                            break;
-                        case 'B':
-                            $index = 'side';
-                            $typename = dgettext('mensawidget', 'Beilage');
-                            break;
-                        case 'N':
-                            $index = 'dessert';
-                            $typename = dgettext('mensawidget', 'Nachspeise');
-                            break;
-                        default:
-                            $index = 'unknown';
-                            $typename = 'unbekannt';
-                    }
-                    $icons = array();
-                    // Add icons for meal type.
-                    foreach (explode(',', $current[4]) as $k) {
-                        if ($icon_mapping[trim($k)]) {
-                            $icons[] = $icon_mapping[trim($k)];
+
+            foreach (explode("\n", $content) as $string) {
+                if (trim($string)) {
+                    $current = str_getcsv(html_entity_decode($string), ';');
+                    // Skip first line as it contains only descriptional headers.
+                    if ($i > 0) {
+                        // Map meal type to some textual representation.
+                        switch (substr($current[2], 0, 1)) {
+                            case 'S':
+                                $index = 'soup';
+                                $typename = dgettext('mensawidget', 'Suppe');
+                                break;
+                            case 'H':
+                                $index = 'main';
+                                $typename = dgettext('mensawidget', 'Hauptgericht');
+                                break;
+                            case 'B':
+                                $index = 'side';
+                                $typename = dgettext('mensawidget', 'Beilage');
+                                break;
+                            case 'N':
+                                $index = 'dessert';
+                                $typename = dgettext('mensawidget', 'Nachspeise');
+                                break;
+                            default:
+                                $index = 'unknown';
+                                $typename = 'unbekannt';
                         }
+                        $icons = array();
+                        // Add icons for meal type.
+                        foreach (explode(',', $current[4]) as $k) {
+                            if ($icon_mapping[trim($k)]) {
+                                $icons[] = $icon_mapping[trim($k)];
+                            }
+                        }
+                        // Add complete record to weekplan.
+                        $weekplan['data'][$current[0]][$index][] = array(
+                            'day' => $current[0],
+                            'meal' => $current[3],
+                            'kind' => $current[4],
+                            'fullprice' => $current[5],
+                            'student' => $current[6],
+                            'employee' => $current[7],
+                            'guest' => $current[8],
+                            'icons' => $icons
+                        );
+                        $weekplan['types'][$index] = $typename;
+                        $weekplan['datemap'][$current[0]] = $current[1];
                     }
-                    // Add complete record to weekplan.
-                    $weekplan['data'][$current[0]][$index][] = array(
-                        'day' => $current[0],
-                        'meal' => $current[3],
-                        'kind' => $current[4],
-                        'fullprice' => $current[5],
-                        'student' => $current[6],
-                        'employee' => $current[7],
-                        'guest' => $current[8],
-                        'icons' => $icons
-                    );
-                    $weekplan['types'][$index] = $typename;
-                    $weekplan['datemap'][$current[0]] = $current[1];
+                    $i++;
                 }
-                $i++;
             }
             return $weekplan;
         }
