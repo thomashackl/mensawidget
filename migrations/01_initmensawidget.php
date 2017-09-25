@@ -1,6 +1,6 @@
 <?php
 
-class InitMensaWidget extends DBMigration {
+class InitMensaWidget extends Migration {
 
     public function up() {
         DBManager::get()->exec("INSERT IGNORE INTO `config` VALUES
