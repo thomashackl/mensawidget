@@ -51,10 +51,10 @@ class MenuController extends AuthenticatedController {
                 $this->lastcurrentweekday = strtotime('next sunday', strtotime('yesterday'));
                 $pricetypes = MensaMenu::getPriceTypes();
                 $pricetype = UserConfig::get($GLOBALS['user']->id)->MENSAWIDGET_PRICETYPE ?: 'fullprice';
-                $this->pricetype = array(
+                $this->pricetype = [
                     'name' => $pricetypes[$pricetype],
                     'value' => $pricetype
-                );
+                ];
                 $this->mtime = $currweekplan['mtime'];
             } else {
                 $this->error = MessageBox::info(
@@ -75,10 +75,10 @@ class MenuController extends AuthenticatedController {
         }
         $this->pricetypes = MensaMenu::getPriceTypes();
         $pricetype = UserConfig::get($GLOBALS['user']->id)->MENSAWIDGET_PRICETYPE ?: 'fullprice';
-        $this->pricetype = array(
+        $this->pricetype = [
             'name' => $this->pricetypes[$pricetype],
             'value' => $pricetype
-        );
+        ];
     }
 
     public function save_settings_action() {

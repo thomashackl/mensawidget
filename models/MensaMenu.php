@@ -17,7 +17,7 @@
 class MensaMenu {
 
     public static function getWeekPlan($week) {
-        $weekplan = array();
+        $weekplan = [];
         $curryear = intval(date('Y'));
         $cachefile = $GLOBALS['CACHING_FILECACHE_PATH'] . '/mensa-' . $curryear . '-' . $week . '.csv';
         // Try to get cached data if file exists and is still valid.
@@ -38,8 +38,8 @@ class MensaMenu {
         }
 
         // Mensa menu, ordered by date
-        $data = array();
-        $types = array();
+        $data = [];
+        $types = [];
         $icon_mapping = self::getIconMapping();
         if ($content) {
             // Get first and last days to consider for current week.
@@ -75,7 +75,7 @@ class MensaMenu {
                                 $index = 'unknown';
                                 $typename = 'unbekannt';
                         }
-                        $icons = array();
+                        $icons = [];
                         // Add icons for meal type.
                         foreach (explode(',', $current[4]) as $k) {
                             if ($icon_mapping[trim($k)]) {
@@ -83,7 +83,7 @@ class MensaMenu {
                             }
                         }
                         // Add complete record to weekplan.
-                        $weekplan['data'][$current[0]][$index][] = array(
+                        $weekplan['data'][$current[0]][$index][] = [
                             'day' => $current[0],
                             'meal' => $current[3],
                             'kind' => $current[4],
@@ -92,7 +92,7 @@ class MensaMenu {
                             'employee' => $current[7],
                             'guest' => $current[8],
                             'icons' => $icons
-                        );
+                        ];
                         $weekplan['types'][$index] = $typename;
                         $weekplan['datemap'][$current[0]] = $current[1];
                     }
@@ -104,66 +104,66 @@ class MensaMenu {
     }
 
     public static function getPriceTypes() {
-        return array(
+        return [
             'fullprice' => dgettext('mensawidget', 'Studierende/Beschäftige/Gäste'),
             'student' => dgettext('mensawidget', 'Studierende'),
             'employee' => dgettext('mensawidget', 'Beschäftigte'),
             'guest' => dgettext('mensawidget', 'Gäste')
-        );
+        ];
     }
 
     private static function getIconMapping()  {
         // Map icons to different kinds of meal (vegetarian, pork, fish etc.)
-        return array(
-            'A' => array(
+        return [
+            'A' => [
                 'icon' => '/assets/images/alkohol.png',
                 'title' => dgettext('mensawidget', 'Alkohol')
-            ),
-            'B' => array(
+            ],
+            'B' => [
                 'icon' => '/assets/images/eu_organic.png',
                 'title' => dgettext('mensawidget', 'DE-ÖKO-006 mit ausschließlich biologisch erzeugten Rohstoffen')
-            ),
-            'F' => array(
+            ],
+            'F' => [
                 'icon' => '/assets/images/fisch.png',
                 'title' => dgettext('mensawidget', 'Fisch')
-            ),
-            'G' => array(
+            ],
+            'G' => [
                 'icon' => '/assets/images/gefluegel.png',
                 'title' => dgettext('mensawidget', 'Geflügel')
-            ),
-            'L' => array(
+            ],
+            'L' => [
                 'icon' => '/assets/images/lamm.png',
                 'title' => dgettext('mensawidget', 'Lamm')
-            ),
-            'MV' => array(
+            ],
+            'MV' => [
                 'icon' => '/assets/images/mensa_vital.png',
                 'title' => dgettext('mensawidget', 'Mensa Vital')
-            ),
-            'MSC' => array(
+            ],
+            'MSC' => [
                 'icon' => '/assets/images/msc.png',
                 'title' => dgettext('mensawidget', 'zertifizierte nachhaltige Fischerei (MSC-C-53400)')
-            ),
-            'R' => array(
+            ],
+            'R' => [
                 'icon' => '/assets/images/rind.png',
                 'title' => dgettext('mensawidget', 'Rind')
-            ),
-            'S' => array(
+            ],
+            'S' => [
                 'icon' => '/assets/images/schwein.png',
                 'title' => dgettext('mensawidget', 'Schwein')
-            ),
-            'V' => array(
+            ],
+            'V' => [
                 'icon' => '/assets/images/vegetarisch.png',
                 'title' => dgettext('mensawidget', 'Vegetarisch')
-            ),
-            'VG' => array(
+            ],
+            'VG' => [
                 'icon' => '/assets/images/vegan.png',
                 'title' => dgettext('mensawidget', 'Vegan')
-            ),
-            'W' => array(
+            ],
+            'W' => [
                 'icon' => '/assets/images/wild.png',
                 'title' => dgettext('mensawidget', 'Wild')
-            )
-        );
+            ]
+        ];
     }
 
 }
