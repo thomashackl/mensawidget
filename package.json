@@ -1,0 +1,61 @@
+{
+    "name": "@studip/whakamahere",
+    "version": "0.2.0",
+    "description": "Stud.IP semester course time and room planning plugin",
+    "private": true,
+    "scripts": {
+        "wds": "webpack-dev-server --progress --config webpack.dev-server.js",
+        "webpack-dev": "webpack --config webpack.dev.js --mode development",
+        "webpack-prod": "webpack --config webpack.prod.js --mode production"
+    },
+    "author": "Thomas Hackl <thomas.hackl@uni-passau.de>",
+    "license": "GPL-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://vcs.uni-passau.de/referat-applikationen/studip/whakamahere"
+    },
+    "dependencies": {
+        "jquery.timeline.psk": "1.0.5",
+        "jqwidgets-framework": "^8.3.2"
+    },
+    "devDependencies": {
+        "@fullcalendar/core": "^4.3.1",
+        "@fullcalendar/interaction": "^4.3.0",
+        "@fullcalendar/timegrid": "^4.3.0",
+        "@fullcalendar/vue": "^4.3.1",
+        "autoprefixer": "^9.7.1",
+        "copy-webpack-plugin": "^5.0.5",
+        "css-loader": "^2.1.0",
+        "dragula": "^3.7.2",
+        "favico.js": "^0.3.0",
+        "mini-css-extract-plugin": "^0.7.0",
+        "node-sass": "^4.13.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.3",
+        "postcss-loader": "^3.0",
+        "sass-loader": "^7.3.1",
+        "style-loader": "^0.23.0",
+        "terser-webpack-plugin": "^1.4.1",
+        "vue": "^2.6.10",
+        "vue-loader": "^15.7.0",
+        "vue-template-compiler": "^2.6.10",
+        "vuex": "^3.1.1",
+        "webpack": "4.29.6",
+        "webpack-cli": "^3.3.10",
+        "webpack-dev-server": "3.2.1",
+        "webpack-merge": "4.2.1"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true
+        },
+        "parserOptions": {
+            "ecmaVersion": 6,
+            "sourceType": "module"
+        }
+    },
+    "prettier": {
+        "printWidth": 120,
+        "singleQuote": true,
+        "tabWidth": 4
+    }
+}

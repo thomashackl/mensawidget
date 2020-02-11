@@ -17,6 +17,10 @@
 class MensaMenu {
 
     public static function getWeekPlan($week) {
+
+        $cache = StudipCacheFactory::getCache();
+        $cache->write('MENSA_PLAN', studip_json_encode[]);
+
         $weekplan = [];
         $curryear = intval(date('Y'));
         $cachefile = $GLOBALS['CACHING_FILECACHE_PATH'] . '/mensa-' . $curryear . '-' . $week . '.csv';
