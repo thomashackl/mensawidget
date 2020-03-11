@@ -22,12 +22,12 @@ class MensaMenu {
         $cachefile = $GLOBALS['CACHING_FILECACHE_PATH'] . '/mensa-' . $curryear . '-' . $week . '.csv';
         // Try to get cached data if file exists and is still valid.
         if (!file_exists($cachefile) ||
-                (filemtime($cachefile) <= mktime() - (Config::get()->MENSAWIDGET_CACHE_LIFETIME*60))) {
+                (filemtime($cachefile) <= time() - (Config::get()->MENSAWIDGET_CACHE_LIFETIME*60))) {
             // Fetch CSV with data from STWNO homepage.
             $file = utf8_encode(
                 trim(
                     file_get_contents(
-                        'http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . mktime()
+                        'http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . time()
                     )
                 )
             );

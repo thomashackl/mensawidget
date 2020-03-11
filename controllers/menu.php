@@ -40,7 +40,7 @@ class MenuController extends AuthenticatedController {
         PageLayout::addScript($js);
         $currweek = date('W');
         $currweekplan = MensaMenu::getWeekPlan($currweek);
-        $nextweek = date('W', mktime()+(7*24*60*60));
+        $nextweek = date('W', time()+(7*24*60*60));
         $nextweekplan = MensaMenu::getWeekPlan($nextweek);
         if ($currweekplan) {
             if (is_array($currweekplan['datemap']) && is_array($nextweekplan['datemap'])) {
