@@ -19,22 +19,22 @@ class MensaMenu {
     public static function getWeekPlan($week) {
         $weekplan = [];
         $curryear = intval(date('Y'));
-        $cachefile = $GLOBALS['CACHING_FILECACHE_PATH'] . '/mensa-' . $curryear . '-' . $week . '.csv';
+
+        $cache = StudipCacheFactory::getCache();
+
         // Try to get cached data if file exists and is still valid.
-        if (!file_exists($cachefile) ||
-                (filemtime($cachefile) <= time() - (Config::get()->MENSAWIDGET_CACHE_LIFETIME*60))) {
-            // Fetch CSV with data from STWNO homepage.
-            $file = utf8_encode(
+        if (!($content = $cache->read('mensa-' . $curryear . '-' . $week))) {
+
+            $content = utf8_encode(
                 trim(
                     file_get_contents(
                         'http://www.stwno.de/infomax/daten-extern/csv/UNI-P/' . intval($week) . '.csv?t=' . time()
                     )
                 )
             );
-            @file_put_contents($cachefile, $file);
-            $content = $file;
-        } else {
-            $content = file_get_contents($cachefile);
+
+            $cache->write('mensa-' . $curryear . '-' . $week, $content, Config::get()->MENSAWIDGET_CACHE_LIFETIME * 60);
+
         }
 
         // Mensa menu, ordered by date
