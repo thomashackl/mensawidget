@@ -36,7 +36,7 @@ class MenuController extends AuthenticatedController {
             'sobald es wieder ein Essensangebot auf dem Campus gibt, wird es hier erscheinen.';
         $this->info_en =
             'The refectory and cafeterias are closed because of the corona virus. Nothing to see here... ' .
-            'as soon as meals will be available again, the menu will be listed here.';
+            'as soon as meals will be available again, the menu will be shown here.';
     }
 
     public function settings_action() {
