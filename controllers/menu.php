@@ -29,42 +29,14 @@ class MenuController extends AuthenticatedController {
     }
 
     public function index_action() {
-        if (Studip\ENV == 'development') {
-            $js = $this->plugin->getPluginURL() . '/assets/javascripts/mensawidget.js';
-            $css = $this->plugin->getPluginURL() . '/assets/stylesheets/style.css';
-        } else {
-            $js = $this->plugin->getPluginURL().'/assets/javascripts/mensawidget.min.js';
-            $css = $this->plugin->getPluginURL().'/assets/stylesheets/style.min.css';
-        }
-        PageLayout::addStylesheet($css);
-        PageLayout::addScript($js);
-        $currweek = date('W');
-        $currweekplan = MensaMenu::getWeekPlan($currweek);
-        $nextweek = date('W', time()+(7*24*60*60));
-        $nextweekplan = MensaMenu::getWeekPlan($nextweek);
-        if ($currweekplan) {
-            if (is_array($currweekplan['datemap']) && is_array($nextweekplan['datemap'])) {
-                $this->days = $currweekplan['datemap'] + $nextweekplan['datemap'];
-                $this->today = date('d.m.Y');
-                $this->data = $currweekplan['data'] + $nextweekplan['data'];
-                $this->types = array_merge($currweekplan['types'], $nextweekplan['types']);
-                $this->lastcurrentweekday = strtotime('next sunday', strtotime('yesterday'));
-                $pricetypes = MensaMenu::getPriceTypes();
-                $pricetype = UserConfig::get($GLOBALS['user']->id)->MENSAWIDGET_PRICETYPE ?: 'fullprice';
-                $this->pricetype = [
-                    'name' => $pricetypes[$pricetype],
-                    'value' => $pricetype
-                ];
-                $this->mtime = $currweekplan['mtime'];
-            } else {
-                $this->error = MessageBox::info(
-                    dgettext('mensawidget',
-                        'Fehler in den vom STWNO übertragenen Daten. Bitte versuchen Sie es später wieder.'));
-            }
-        } else {
-            $this->error = MessageBox::info(
-                dgettext('mensawidget', 'Kein Speiseplan für die aktuelle Woche gefunden.'));
-        }
+        PageLayout::addStylesheet($this->plugin->getPluginURL().'/assets/stylesheets/style.css');
+
+        $this->info_de =
+            'Wegen Corona sind Mensa und Cafeten aktuell geschlossen. Hier gibt es nichts zu sehen... ' .
+            'sobald es wieder ein Essensangebot auf dem Campus gibt, wird es hier erscheinen.';
+        $this->info_en =
+            'The refectory and cafeterias are closed because of the corona virus. Nothing to see here... ' .
+            'as soon as meals will be available again, the menu will be listed here.';
     }
 
     public function settings_action() {

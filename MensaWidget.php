@@ -33,10 +33,6 @@ class MensaWidget extends StudIPPlugin implements PortalPlugin {
             $template = $GLOBALS['template_factory']->open('shared/string');
             $template->content = $response->body;
 
-            $navigation = new Navigation('', PluginEngine::getURL('mensawidget/menu/settings'));
-            $navigation->setImage(Icon::create('admin', 'clickable'), ['data-dialog' => 'size=auto', 'title' => _('Einstellungen anpassen')]);
-            $template->icons = [$navigation];
-
             return $template;
         }
         return NULL;

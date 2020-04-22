@@ -1,78 +1,16 @@
-@import "colors.less";
+article.mensawidget {
+  header {
+    padding-top: 10px;
+    text-align: center;
 
-header.mensawidget-select {
-  margin-right: 5px;
-  div.mensawidget-weeks {
-    bottom: 0;
-    float: left;
-    height: 45px;
-    left: 0;
-    position: relative;
-    span.mensawidget-weekselect {
-      /*border: 1px solid @light-gray-color-20;*/
-      background-color: @content-color;
-      border-bottom: 1px solid @content-color;
-      color: #fff;
-      padding: 3px;
-      margin-right: -1px;
-      display: inline-block;
-      margin-top: 16px;
-      &:hover {
-        background-color: #7890bc;
-      }
+    img, svg {
+      height: 64px;
+      width: 64px;
     }
   }
-  div.mensawidget-days {
-    bottom: 0;
-    float: right;
-    height: 45px;
-    left: 0;
-    position: relative;
-    a.mensawidget-daylink {
-      span.mensawidget-dayselect {
-        /*border: 1px solid @light-gray-color-20;*/
-        background-color: @content-color;
-        border-bottom: 1px solid @content-color;
-        color: #fff;
-        padding: 3px;
-        margin-right: -2px;
-        display: inline-block;
-        margin-top: 16px;
-        div.mensawidget-todaytext {
-            font-size: 67%;
-            text-align: center;
-        }
-        &:hover {
-          background-color: #7890bc;
-        }
-      }
-      span.mensawidget-today {
-        font-weight: bold;
-        margin-top: 3px;
-      }
-    }
+
+  section {
+    margin: 10px;
+    font-style: italic;
   }
-  span.mensawidget-selected {
-    background-color: #fff !important;
-    color: #000 !important;
-    border: 1px solid @content-color;
-  }
-}
-section.mensawidget-menu {
-  width: 100%;
-  td.mensawidget-type {
-    font-weight: bold;
-    vertical-align: top;
-  }
-  td.mensawidget-kind {
-    text-align: right !important;
-  }
-  .mensawidget-price {
-    text-align: center !important;
-  }
-}
-footer.mensawidget-info {
-  background-color: @light-gray-color-20;
-  font-size: 9pt;
-  margin-top: -13px;
 }
